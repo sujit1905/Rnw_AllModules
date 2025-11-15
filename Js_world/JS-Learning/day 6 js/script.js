@@ -7,6 +7,7 @@
 //     console.log(num);
 // }
 // diceRoll();
+// diceRoll();
 
 //functions with argument
 

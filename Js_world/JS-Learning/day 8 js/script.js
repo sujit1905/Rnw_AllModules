@@ -6,6 +6,7 @@ function great() {
 arr.forEach(great);
 arr.forEach(great);
 arr.forEach(great);
+arr.forEach(great);
 
 //map
 let arr01 = [2, 4, 6, 8];
