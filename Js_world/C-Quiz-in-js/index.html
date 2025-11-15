@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>C Language Quiz</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        background-color: #f5f6fa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      #cquizcontainer {
+        background: white;
+        width: 90%;
+        max-width: 600px;
+        border-radius: 16px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+      }
+      h1 {
+        text-align: center;
+        color: #2f3640;
+        margin-bottom: 20px;
+      }
+      #question-container {
+        background: #eaf0fb;
+        padding: 15px 20px;
+        border-radius: 10px;
+        font-weight: 500;
+        margin-bottom: 20px;
+        border: 2px solid #dcdde1;
+      }
+      #option-container {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+      .option {
+        background: #f1f2f6;
+        border: none;
+        padding: 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.2s;
+        font-size: 16px;
+        text-align: left;
+      }
+      .option:hover {
+        background: #dfe4ea;
+      }
+      .correct {
+        background-color: #2ed573 !important;
+        color: white;
+      }
+      .wrong {
+        background-color: #ff4757 !important;
+        color: white;
+      }
+
+      /* ✅ Keeps buttons aligned even if one is hidden */
+      #next-pre-button {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+      }
+
+      #next-pre-button button {
+        background-color: #1e90ff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: 0.2s;
+        min-width: 90px;
+      }
+
+      #next-pre-button button:hover {
+        background-color: #006eff;
+      }
+
+      /* ✅ Keeps space for Prev button even when hidden */
+      #prv-btn {
+        visibility: hidden;
+      }
+
+      #prv-btn.show {
+        visibility: visible;
+      }
+
+      #score-container {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 18px;
+        color: #2f3640;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="cquizcontainer">
+      <h1>“C Programming Quiz”</h1>
+      <div id="question-container"></div>
+      <div id="option-container">
+        <button class="option"></button>
+        <button class="option"></button>
+        <button class="option"></button>
+        <button class="option"></button>
+      </div>
+
+      <!-- ✅ Keeps Next on right side always -->
+      <div id="next-pre-button">
+        <button id="prv-btn">Prev</button>
+        <button id="next-btn">Next</button>
+      </div>
+
+      <div id="score-container"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
