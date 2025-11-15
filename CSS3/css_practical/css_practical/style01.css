@@ -1,0 +1,115 @@
+/* Reset default margins and paddings, enable border-box for consistent sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navigation bar container */
+.nav {
+    height: 120px;
+    width: 100%;
+    background-color: rgb(160, 236, 193);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-around; /* Distribute left and right sections */
+}
+
+/* Logo styling */
+.left img {
+    height: 130px;
+    width: 150px;
+}
+
+/* Hover effect for navigation links */
+.right ul li a:hover {
+    color: rgb(7, 88, 151);
+    transform: scale(2); /* Enlarges link on hover */
+}
+
+/* Style for list items in navigation */
+.right ul li {
+    list-style: none;
+    display: inline;
+    margin-left: 80px;
+}
+
+/* Styling navigation links */
+.right ul li a {
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+}
+
+/* Style for dropdown <select> elements */
+select {
+    background: transparent;
+    border: none;
+    font-weight: 500;
+}
+
+/* Hover effect for dropdown <select> */
+select:hover {
+    color: rgb(7, 88, 151);
+    font-weight: 500;
+}
+
+/* Container for dropdown item */
+.dropdown {
+    position: relative;
+}
+
+/* Show mega menu on hover */
+.dropdown:hover .mega-menu {
+    display: flex;
+}
+
+/* Mega menu container */
+.mega-menu {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 100%; /* Position below the parent */
+    left: 0;
+    width: 600px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    justify-content: space-between;
+    z-index: 10;
+}
+
+/* Each column in the mega menu */
+.menu-column {
+    flex: 1;
+    margin: 0 10px;
+}
+
+/* Header in each column */
+.menu-column h4 {
+    margin-bottom: 10px;
+    color: rgb(7, 88, 151);
+    font-size: 16px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+
+/* Remove bullet points and padding from list */
+.menu-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* Style for each link in the mega menu */
+.menu-column ul li a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    padding: 6px 0;
+}
+
+/* Hover effect for mega menu links */
+.menu-column ul li a:hover {
+    color: rgb(7, 88, 151);
+    background-color: #f1f1f1;
+}

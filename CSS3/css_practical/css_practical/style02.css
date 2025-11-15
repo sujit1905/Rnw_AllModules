@@ -1,0 +1,70 @@
+/* Reset default spacing and use border-box model */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Set background color and font */
+body {
+  background-color: darkcyan;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+/* Style the contact form container */
+form {
+  max-width: 500px;
+  margin: 80px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 15px;
+  border: 2px solid #000;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  animation: animate 1s ease;
+}
+/* Style for form heading */
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #004d4d;
+}
+/* Input and textarea styling */
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  transition: 0.3s;
+}
+
+/* Input focus effect */
+input:focus, textarea:focus {
+  border-color: #00b3b3;
+  box-shadow: 0 0 5px rgba(0, 179, 179, 0.5);
+  outline: none;
+}
+
+/* Button appearance and hover effect */
+button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  background-color: #009999;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #007777;
+}
+
+/* Entry animation for the form */
+@keyframes animate {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
