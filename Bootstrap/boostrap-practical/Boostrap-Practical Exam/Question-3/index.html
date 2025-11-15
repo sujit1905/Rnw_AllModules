@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create an FAQ Section Using the Accordion Component</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .faq-container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+
+    .accordion-button {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .accordion-body {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    h1.title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container faq-container bg-white shadow rounded p-4">
+    <h1 class="text-center title text-primary">Frequently Asked Questions</h1>
+
+    <div class="accordion" id="accordionExample">
+      <!-- Question 1 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+            aria-expanded="true" aria-controls="collapseOne">
+            What types of shoes do you offer?
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+          <div class="accordion-body text-secondary">
+            <strong>We offer a wide range of high-quality shoes</strong> for men, women, and kids — including casual
+            wear, formal shoes, sports shoes, and seasonal collections. Our products are designed for comfort, style,
+            and durability.
+          </div>
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            How can I find the right shoe size?
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+          <div class="accordion-body text-secondary">
+            We provide a detailed size chart on every product page to help you find the perfect fit. If you're unsure,
+            you can follow our measuring guide or contact customer support for assistance.
+          </div>
+        </div>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            Do you offer returns or exchanges?
+          </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+          <div class="accordion-body text-secondary">
+            Yes, we offer a hassle-free return and exchange policy within 7 days of delivery. The shoes must be unused
+            and in their original packaging. Visit our Returns & Exchanges page for complete details.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

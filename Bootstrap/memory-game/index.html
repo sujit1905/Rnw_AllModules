@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #0a0a1a;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #4fc3f7;
+            text-shadow: 0 0 10px rgba(79, 195, 247, 0.5);
+            margin-bottom: 10px;
+        }
+
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            width: 500px;
+            margin-bottom: 20px;
+        }
+
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(5, 100px);
+            grid-gap: 10px;
+            perspective: 1000px;
+        }
+
+        .card {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .card-front {
+            background: linear-gradient(135deg, #1a237e, #0d47a1);
+            transform: rotateY(180deg);
+        }
+
+        .card-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-back {
+            background: linear-gradient(135deg, #6a1b9a, #9c27b0);
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 40px;
+        }
+
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card.matched {
+            transform: rotateY(180deg);
+            box-shadow: 0 0 15px #4caf50;
+        }
+
+        button {
+            background: linear-gradient(135deg, #4fc3f7, #2196f3);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(79, 195, 247, 0.7);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a237e, #0d47a1);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+        }
+
+        .modal h2 {
+            color: #4fc3f7;
+            margin-top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Memory Game</h1>
+    <div class="game-info">
+        <div>Moves: <span id="moves">0</span></div>
+        <div>Matches: <span id="matches">0</span>/10</div>
+    </div>
+    <div class="game-board" id="gameBoard"></div>
+    <button id="restartBtn">New Game</button>
+
+    <div class="modal" id="gameOverModal">
+        <div class="modal-content">
+            <h2 id="resultMessage">You Win!</h2>
+            <p>You completed the game in <span id="finalMoves">0</span> moves!</p>
+            <button id="playAgainBtn">Play Again</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const gameBoard = document.getElementById('gameBoard');
+            const movesDisplay = document.getElementById('moves');
+            const matchesDisplay = document.getElementById('matches');
+            const restartBtn = document.getElementById('restartBtn');
+            const gameOverModal = document.getElementById('gameOverModal');
+            const playAgainBtn = document.getElementById('playAgainBtn');
+            const finalMoves = document.getElementById('finalMoves');
+            const resultMessage = document.getElementById('resultMessage');
+
+            // Indian cricketers images
+            const cricketers = [
+                { name: "Virat Kohli", img: "https://cdn.britannica.com/48/252748-050-C514EFDB/Virat-Kohli-India-celebrates-50th-century-Cricket-November-15-2023.jpg" },
+                { name: "MS Dhoni", img: "https://www.hindustantimes.com/ht-img/img/2023/04/04/1600x900/PTI04-03-2023-000319B-0_1680592093818_1680592093818_1680592116744_1680592116744.jpg" },
+                { name: "Rohit Sharma", img: "https://imgeng.jagran.com/images/2023/nov/Rohit-Sharma-profile1700142481090.jpg" },
+                { name: "Sachin Tendulkar", img: "https://www.cricketfile.com/wp-content/uploads/2020/12/sachin-tendulkar-1556110391.jpg" },
+                { name: "Rahul Dravid", img: "https://images.hindustantimes.com/img/2022/01/24/1600x900/PTI11-16-2021-000152B-0_1637135940652_1643046942668.jpg" },
+                { name: "Kapil Dev", img: "https://th.bing.com/th/id/OIP.XZv6GRTKc4bGITDOcsw7_QHaHj?o=7&cb=iwp2rm=3&rs=1&pid=ImgDetMain" },
+                { name: "Sunil Gavaskar", img: "https://images.hindustantimes.com/img/2024/07/10/1600x900/gavaskar-batting-old-getty_1720585993540_1720585998584.jpg" },
+                { name: "Anil Kumble", img: "https://cdn.dnaindia.com/sites/default/files/styles/full/public/2020/08/02/917011-744550-kumble-1.jpg" },
+                { name: "Hardik Pandya", img: "https://static.toiimg.com/thumb/msid-121416494,width-400,resizemode-4/Hardik-Pandya.jpg" },
+                { name: "Jasprit Bumrah", img: "https://img.mathrubhumi.com/view/acePublic/alias/contentid/1i4i4uzs8kl0cvx8lg0/1/jasprit-bumrah.webp?f=3%3A2&q=0.75&w=900" }
+            ];
+
+            let cards = [];
+            let flippedCards = [];
+            let matchedPairs = 0;
+            let moves = 0;
+            let gameOver = false;
+
+            // Initialize game
+            function initGame() {
+                gameBoard.innerHTML = '';
+                cards = [];
+                flippedCards = [];
+                matchedPairs = 0;
+                moves = 0;
+                gameOver = false;
+                movesDisplay.textContent = moves;
+                matchesDisplay.textContent = matchedPairs;
+
+                // Create pairs of cards
+                let gameCards = [];
+                cricketers.forEach(player => {
+                    gameCards.push(player);
+                    gameCards.push(player);
+                });
+
+                // Shuffle cards
+                gameCards = shuffleArray(gameCards);
+
+                // Create card elements
+                gameCards.forEach((player, index) => {
+                    const card = document.createElement('div');
+                    card.classList.add('card');
+                    card.dataset.index = index;
+                    card.dataset.name = player.name;
+
+                    const cardFront = document.createElement('div');
+                    cardFront.classList.add('card-face', 'card-front');
+                    const img = document.createElement('img');
+                    img.src = player.img;
+                    img.alt = player.name;
+                    cardFront.appendChild(img);
+
+                    const cardBack = document.createElement('div');
+                    cardBack.classList.add('card-face', 'card-back');
+                    cardBack.textContent = '🏏';
+
+                    card.appendChild(cardFront);
+                    card.appendChild(cardBack);
+                    card.addEventListener('click', flipCard);
+
+                    gameBoard.appendChild(card);
+                    cards.push(card);
+                });
+            }
+
+            // Shuffle array
+            function shuffleArray(array) {
+                const newArray = [...array];
+                for (let i = newArray.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+                }
+                return newArray;
+            }
+
+            // Flip card
+            function flipCard() {
+                if (gameOver) return;
+
+                const selectedCard = this;
+
+                // Don't allow flipping if already flipped or matched
+                if (selectedCard.classList.contains('flipped') ||
+                    selectedCard.classList.contains('matched') ||
+                    flippedCards.length >= 2) {
+                    return;
+                }
+
+                selectedCard.classList.add('flipped');
+                flippedCards.push(selectedCard);
+
+                // Check for match when two cards are flipped
+                if (flippedCards.length === 2) {
+                    moves++;
+                    movesDisplay.textContent = moves;
+
+                    const card1 = flippedCards[0];
+                    const card2 = flippedCards[1];
+
+                    if (card1.dataset.name === card2.dataset.name) {
+                        // Match found
+                        card1.classList.add('matched');
+                        card2.classList.add('matched');
+                        flippedCards = [];
+                        matchedPairs++;
+                        matchesDisplay.textContent = matchedPairs;
+
+                        // Check for win
+                        if (matchedPairs === cricketers.length) {
+                            setTimeout(() => {
+                                gameOver = true;
+                                resultMessage.textContent = 'YOU WIN.';
+                                finalMoves.textContent = moves;
+                                gameOverModal.style.display = 'flex';
+                            }, 500);
+                        }
+                    } else {
+                        // No match
+                        setTimeout(() => {
+                            card1.classList.remove('flipped');
+                            card2.classList.remove('flipped');
+                            flippedCards = [];
+                        }, 1000);
+                    }
+                }
+            }
+
+            // Event listeners
+            restartBtn.addEventListener('click', initGame);
+            playAgainBtn.addEventListener('click', () => {
+                gameOverModal.style.display = 'none';
+                initGame();
+            });
+
+            // Start the game
+            initGame();
+        });
+    </script>
+</body>
+
+</html>

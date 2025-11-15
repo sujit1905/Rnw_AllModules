@@ -1,0 +1,172 @@
+/* Custom responsive adjustments */
+@media (max-width: 1200px) {
+    .navbar-nav {
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    .navbar-nav .nav-item:last-child .nav-link {
+        border-bottom: none;
+    }
+
+    .navbar-icons-container {
+        justify-content: center !important;
+    }
+
+    .vertical-text {
+        font-size: 2.0rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    .mainlogo {
+        height: 35px;
+    }
+
+    .navbar-icons {
+        font-size: 1rem;
+    }
+
+    .vertical-text {
+        font-size: 1.0rem;
+    }
+}
+
+/* Responsive adjustments for static gallery only */
+@media (max-width: 768px) {
+    .static-gallery-carousel .carousel-item {
+        height: 200px;
+    }
+
+    .static-gallery-carousel .carousel-control-prev,
+    .static-gallery-carousel .carousel-control-next {
+        width: 45px;
+        height: 45px;
+    }
+
+    .static-gallery-carousel .carousel-control-prev {
+        left: 10px;
+    }
+
+    .static-gallery-carousel .carousel-control-next {
+        right: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .static-gallery-carousel .carousel-item {
+        height: 150px;
+    }
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.scrolling-text span {
+    padding: 0 1rem;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.scrolling-text span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 1rem;
+}
+
+/* Responsive adjustments for small screens */
+@media (max-width: 600px) {
+    .carousel-control-prev.custom-carousel-control {
+        left: 10px;
+        /* Bring inside */
+    }
+
+    .carousel-control-next.custom-carousel-control {
+        right: 10px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1024px) {
+    .mainlogo {
+        width: 160px;
+    }
+
+    .nav-link {
+        font-size: 12px;
+    }
+
+    nav {
+        width: 100%;
+    }
+
+    .navbar-icons {
+        font-size: 15px;
+    }
+
+    .navbar-icons-container {
+        gap: 10px;
+    }
+
+    .navbar-nav {
+        margin-top: 0px;
+    }
+
+    .tranding-section {
+        margin-top: 30px;
+    }
+
+    .trendingtext {
+        font-size: 15px;
+    }
+
+    .vibeimage {
+        height: 500px;
+    }
+
+    .app-badges {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width:426px) {
+    .static-gallery-container {
+        flex-direction: column;
+    }
+
+    .vertical-text {
+        writing-mode: unset;
+        transform: rotate(360deg);
+        font-size: 1.5rem;
+        font-weight: 500;
+        letter-spacing: 0.1rem;
+        color: #000;
+        line-height: 30px;
+    }
+    .carouselExample1{
+        margin-top: 4px !important;
+    }
+    .feature-box{
+        align-items: center;
+        justify-content: center;
+    }
+}

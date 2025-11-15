@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create a Banner Design Using a Carousel Component</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body>
+
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+        aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+        aria-label="Slide 3"></button>
+    </div>
+    <!-- carousel strat -->
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="images/ca01.webp" class="d-block w-100" alt="Banner 1">
+        <div class="carousel-caption">
+          <h1>Welcome to Our Website</h1>
+          <p>Your journey begins here. Discover amazing things with us.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="images/ca02.jpg" class="d-block w-100" alt="Banner 2">
+        <div class="carousel-caption">
+          <h1>Creative Designs</h1>
+          <p>Designs that speak louder than words. Experience elegance.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="images/ca03.webp" class="d-block w-100" alt="Banner 3">
+        <div class="carousel-caption">
+          <h1>Join Us Today</h1>
+          <p>Be part of our growing community. Let's build together.</p>
+        </div>
+      </div>
+    </div>
+    <!-- buttons -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
